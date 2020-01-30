@@ -1,0 +1,150 @@
+﻿body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+.row > .column {
+  padding: 0 8px;
+}
+ 
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+ 
+.column {
+  float: left;
+  width: 25%;
+}
+
+ .smallhand{
+    cursor:pointer;
+}
+ 
+/* 弹窗背景 */
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /*background-color: black;*/
+  background-color:rgba(0, 0, 0, 0.5);/*最后一个参数是透明度*/
+  /*backdrop:true;*/
+  
+}
+ 
+/* 弹窗内容 */
+.modal-content {
+  position: relative;
+  background-color: transparent;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 1200px;
+  opacity:1.0;
+}
+ 
+/* 关闭按钮 */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+ 
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+ 
+.EN_mySlides {
+  display: none;
+}
+.CN_mySlides {
+  display: none;
+}
+ 
+.cursor {
+  cursor: pointer
+}
+ 
+/* 上一页 & 下一页 按钮 */
+.prev-left,
+.next-right {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+ 
+/* 定位下一页按钮到右侧 */
+.next-right {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+ 
+/* 鼠标移动上去修改背景色为黑色 */
+.prev-left:hover,
+.next-right:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+ 
+/* 页数(1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+ 
+img {
+  margin-bottom: -4px;
+}
+ 
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+ 
+.demo {
+  opacity: 0.6;
+}
+ 
+.active,
+.demo:hover {
+  opacity: 1;
+}
+ 
+img.hover-shadow {
+  transition: 0.3s
+}
+ 
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}

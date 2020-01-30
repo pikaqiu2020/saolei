@@ -1,0 +1,69 @@
+﻿.HidePanel {
+    display: none;
+}
+
+.hide-area {
+    display: none;
+}
+
+ .form-group label.required:before {
+     content: '*';
+     color: red;
+     font-size: 100%;
+ }
+
+textarea {
+    border:1px solid #808080;
+}
+
+.div-striped input[type="text"],input[type="time"]{
+    width:138px;
+    border:1px solid #808080;
+} 
+
+.div-striped > div:nth-of-type(odd){
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    
+}
+.div-striped > div:nth-of-type(even){
+    margin-bottom: 0px !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+input[type="text"]:focus, textarea:focus, input[type="time"]:focus {
+    outline: none;
+    border-color: #35e5cf;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8 !important;
+    border-color: #d6e9c6;
+    float:left;width:250px;height:50px;border:1px solid #F00
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede !important;
+    border-color: #ebccd1;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.ProceedandReject {
+    background-color: #f9f9f9;
+    border: none !important;
+    margin-bottom: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}

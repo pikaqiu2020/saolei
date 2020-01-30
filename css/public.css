@@ -1,0 +1,127 @@
+﻿.cus-label {
+    line-height: 28px;
+}
+
+.cus-input {
+    height: 28px;
+    width: 100% !important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 5px !important;
+}
+
+.cus-button {
+    height: 28px;
+    width: 100px;
+    margin: 0px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.pd0 {
+    padding: 0px;
+}
+
+/*遮罩层*/
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 10001;
+    background-color: rgba(150,150,150, 0.3);
+}
+
+.overlay-loading {
+    position: fixed;
+    top: 45%;
+    left: 48%;
+    z-index: 10002;
+    filter:alpha(opacity=100);
+    opacity: 1;
+    -moz-opacity: 1;
+}
+
+/*限制单元格长度,多余文字显示...*/
+/*.datatable > tbody > tr > td {
+    max-width: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.datatable > thead > tr > th {
+     max-width: 220px;
+    white-space: nowrap;
+}*/
+
+/*页码样式*/
+.dataTables_paginate {
+    margin-top: 8px !important;
+}
+
+.dataTables_wrapper {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dataTables_info {
+    display: inline-block;
+}
+
+    .dataTables_paginate a {
+        padding: 4px 7px 4px 7px;
+        border: #CCC solid 1px;
+        border-right: 0px;
+        cursor: pointer;
+    }
+
+        .dataTables_paginate a:hover {
+            background: #CCC;
+            text-decoration: none;
+        }
+
+    .dataTables_paginate span a {
+        padding: 4px 7px 4px 7px;
+        border: #CCC solid 1px;
+        border-right: 0px;
+        cursor: pointer;
+    }
+
+.current {
+    background: rgba(51,122,183,0.2);
+}
+
+.dataTables_paginate span a:hover {
+    background: #CCC;
+    text-decoration: none;
+}
+
+.ellipsis {
+    padding: 4px 7px 4px 7px;
+    border: #CCC solid 1px;
+    border-right: 0px;
+}
+
+.first {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.last {
+    border-right: #CCC solid 1px !important;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
