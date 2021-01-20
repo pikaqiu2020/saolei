@@ -67,3 +67,23 @@ input[type="text"]:focus, textarea:focus, input[type="time"]:focus {
     padding-top: 2px;
     padding-bottom: 2px;
 }
+/*格子样式*/
+td{
+    border-color:#b7b7b7;
+    text-align: center;
+}
+.zeroClass{
+    color:#c8c8c8!important;
+    background-color: #c8c8c8!important;
+}
+.boomClass{
+    color:rgba(250, 156, 156)!important;
+    background-color: rgba(250, 156, 156)!important;
+    border-radius: 50%;
+}
+.numClass{
+    color:black!important;
+}
+.noneClass{
+    color:#ddddff!important;
+}

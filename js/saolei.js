@@ -1,8 +1,62 @@
-var leinumber;
+var leinumber;	//user雷数
+var realnum;	//剩余真实雷数
 $(document).ready(function (){
 	level('1');
+	oncontextmenu = function(){return false};
+	realnum = $('#selectedlevel').val()*10;
 
-	
+	//监听触发事件
+	$('td').mousedown(function(e){
+		var id = this.id;
+		var n = $('#'+id).text();
+		var usernum = $('#leinumber').val();	//剩余user雷数
+	    if(3 == e.which){	
+			//右键
+			  if($('#' + id).css('color') == 'rgb(221, 221, 255)'){	//空
+				if(usernum == 0 && realnum != 0)	//flag已满
+					return;
+				usernum--;	//剩余user雷数减一
+				$('#' + id).addClass('boomClass');	//标记flag
+				//如果真是雷，真实雷数减一
+				if(n == 'lei'){
+					realnum--;
+				}
+			}else if($('#' + id).hasClass('boomClass')){	//flag
+				$('#' + id).removeClass('boomClass');
+				usernum++;	//剩余user雷数加一
+				//如果真是雷，真实雷数加一
+				if(n == 'lei'){
+					realnum++;
+				}
+			}
+	    }else if(1 == e.which){
+			//左键 为空时才能按下
+			if($('#' + id).css('color') == 'rgb(221, 221, 255)'){
+				if(n == 'lei'){
+					alert('游戏结束！');
+					refresh();
+					//break;
+				}else if(n != 0){
+					setNum(id);
+				}else{
+					setZero(id);
+					zero(id);
+				}
+			}
+		}
+		$('#leinumber').val(usernum);
+		//判断游戏成功
+		var endResult = false;
+	    for(var i = 0;i<$('#selectedlevel').val()*100;i++){
+	    	if($('#'+ i).css('color') == 'rgb(221, 221, 255)'){
+				endResult = true;
+				break;
+			}
+		}
+		if(!endResult && realnum == 0){
+			alert("游戏成功！");
+		}
+	})
 });
 
 //控制难度
@@ -10,18 +64,7 @@ $(document).ready(function (){
 function level(param){
 	$('#table').html("");
 	var tablestr = "";
-	if(param == 1){
-		$('#selectedlevel').val('1');
-	}
-	else if(param == 2){
-		$('#selectedlevel').val('2');
-	}
-	else if(param == 3){
-		$('#selectedlevel').val('3');
-	}
-	else{
-		$('#selectedlevel').val('');
-	}
+	$('#selectedlevel').val(param);
 	$('#leinumber').val(param*10);
 	leinumber = param*10;
 	var id = 0;
@@ -32,16 +75,14 @@ function level(param){
 			id++;
 		}
 		tablestr += "</tr>";
-		// $('#table').append("</tr>"); 
 	}
 	$('#table').append(tablestr);
 	start();
 }
-
 //开始
-
 function start(){
 	var level = $('#selectedlevel').val();
+	$('#leinumber').val(level*10);
 	$("td").text("");
 	var leishu = random(level);
 	for(var i =0;i<leishu.length;i++)
@@ -49,47 +90,7 @@ function start(){
 		$('#'+leishu[i]).text('lei');
 	}
 	number(leishu);
-	//监听触发事件
-	$('td').mousedown(function(e){
-		var id = this.id;
-		var n = $('#'+id).text();
-		var length = $('#selectedlevel').val();
-	    if(3 == e.which){
-          	if(n == 'lei'){	
-				$('#'+id).html('nei');
-			}else if(n == 'nei'){
-				$('#'+id).html('lei');
-			}
-			if($('#'+id).css('color') == 'rgb(221, 221, 255)'){
-				$('#'+id).css('color','red');
-				$('#leinumber').val(--leinumber);
-			}else if($('#'+id).css('color') == 'rgb(255, 0, 0)'){
-				$('#'+id).css('color','black');
-				$('#leinumber').val(++leinumber);
-			}
-	    }else if(1 == e.which){
-	           	
-			if(n == 'lei'){
-				// for(var i = 0;i<length*100;i++){
-				// 	if($('#'+i).text() == 'lei'){
-				// 		$('#'+i).css('color','black');
-				// 	}
-				// }
-				alert('游戏结束！');
-				refresh();
-				//break;
-			}else if(n != 0){
-				$('#'+id).css('color','black');
-			}else{
-				$('#'+id).css('color','black');
-				zero(id);
-			}
-	    }
-	    //判断游戏成功
-	    //for(var i = 0;i<length*100;i++){
-	    	//if()
-	    //}
-	})
+	
 }
 
 //得到雷的位置
@@ -163,32 +164,42 @@ function number(leishu){
 //空白格子
 
 function zero(i){
-	var s = parseInt($('#selectedlevel').val()*10);
+	var s = parseInt($('#selectedlevel').val()*10);	//10, 20 or 30
 	i = parseInt(i);
-	var flag = true;
-	if(i%s != 0)
-	{
-		digui(i-s-1);
-		digui(i-1);
-		digui(i+s-1);
+
+	//不是最上面一排
+	if(i >= s){
+		digui(i - s);
+	}			
+	//不是最下面一排
+	if(i <= (s - 1) * 10){	
+		digui(i + s);
 	}
-	if((i+1)%s != 0)
-	{	
-		digui(i-s+1);
-		digui(i+1);
-		digui(i+s+1);
+	//不是最左边一排
+	if(i % s != 0){
+		digui(i - 1);
+		digui(i - s - 1);
+		digui(i + s - 1);
 	}
-	digui(i-s);
-	digui(i+s);
+	//不是最右边一排
+	if((i + 1) % s != 0){
+		digui(i + 1);
+		digui(i - s + 1);
+		digui(i + s + 1);
+	}
 }
 
 //递归空白格
 
 function digui(id){
-	if($('#'+id).text() != 'lei' && $('#'+id).css('color') != 'rgb(0, 0, 0)')
+	if(id < 0){
+		return;
+	}
+	if($('#'+id).text() != 'lei' && !$('#'+id).hasClass('zeroClass'))
 	{
 		$('#'+id).css('color','black');
 		if($('#'+id).text() == '0'){
+			setZero(id);
 			zero(id);
 		}
 	}
@@ -202,6 +213,22 @@ function refresh(){
 		$('#'+i).text('');
 		$('#'+i).css('color','#ddf');
 		$('#'+i).css('background-color','#ddf');
+		$('#'+i).removeClass('zeroClass');
+		$('#'+i).removeClass('boomClass');
+		$('#'+i).removeClass('numClass');
 	}
 	start();
+}
+
+//0格子的flag
+function setZero(id){
+	$('#'+id).addClass('zeroClass');
+}
+//雷格子的flag
+function setBoom(id){
+	$('#'+id).addClass('boomClass');
+}
+//已点开格子的flag
+function setNum(id){
+	$('#'+id).addClass('numClass');
 }
